@@ -10,7 +10,7 @@ buildscript {
     }
 }
 
-version "1.6.1"
+version "1.6.2-SNAPSHOT"
 group "au.org.ala"
 
 apply plugin:"eclipse"
@@ -56,6 +56,7 @@ dependencies {
         exclude group: 'org.springframework', module: 'spring-jdbc'
         exclude group: 'javax.servlet', module: 'servlet-api'
         exclude group: 'org.apache.bval', module: 'org.apache.bval.bundle'
+        exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     }
     compile 'org.grails.plugins:external-config:1.1.1'
     compile group: 'org.grails.plugins', name: 'ala-admin-plugin', version: '2.1'
