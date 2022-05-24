@@ -199,11 +199,13 @@ class SDSService {
         //populate the result
         def speciesReport = new SpeciesReport()
         speciesReport.scientificName = name
-        if(st.getCommonName()) {
-            speciesReport.commonName = st.getCommonName()
-        }
-        if(st.getAcceptedName() && st.getAcceptedName() != name) {
-            speciesReport.acceptedName = st.getAcceptedName()
+        if (st) {
+            if (st.getCommonName()) {
+                speciesReport.commonName = st.getCommonName()
+            }
+            if (st.getAcceptedName() && st.getAcceptedName() != name) {
+                speciesReport.acceptedName = st.getAcceptedName()
+            }
         }
         if(status.size()>0) {
             speciesReport.status = status
