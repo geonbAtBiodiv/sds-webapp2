@@ -1,5 +1,5 @@
-import ch.qos.logback.core.util.FileSize
 import grails.util.Environment
+import ch.qos.logback.core.util.FileSize
 import org.springframework.boot.logging.logback.ColorConverter
 import org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter
 
@@ -82,7 +82,8 @@ switch (Environment.current) {
                         "%level %logger - %msg%n"
             }
         }
-        root(WARN, [FULL_STACKTRACE, STDOUT])
+        root(INFO, [STDOUT])
+        root(ERROR, [FULL_STACKTRACE])
         break
     default:
         appender(TOMCAT_LOG, ConsoleAppender) {

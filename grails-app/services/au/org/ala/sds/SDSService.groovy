@@ -113,10 +113,8 @@ class SDSService {
                 }
             } catch(FileNotFoundException e){
                 log.error("Unable to update the SDS species file." , e)
-            } catch(IOException e){
-                log.error(e);
-            } catch (Exception e){
-                log.error(e);
+             } catch (Exception e){
+                log.error("Unable to refresh", e)
             }
 
         }
@@ -199,11 +197,13 @@ class SDSService {
         //populate the result
         def speciesReport = new SpeciesReport()
         speciesReport.scientificName = name
-        if(st.getCommonName()) {
-            speciesReport.commonName = st.getCommonName()
-        }
-        if(st.getAcceptedName() && st.getAcceptedName() != name) {
-            speciesReport.acceptedName = st.getAcceptedName()
+        if (st) {
+            if (st.getCommonName()) {
+                speciesReport.commonName = st.getCommonName()
+            }
+            if (st.getAcceptedName() && st.getAcceptedName() != name) {
+                speciesReport.acceptedName = st.getAcceptedName()
+            }
         }
         if(status.size()>0) {
             speciesReport.status = status
