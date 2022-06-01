@@ -1,4 +1,5 @@
 import grails.util.Environment
+import ch.qos.logback.core.util.FileSize
 import org.springframework.boot.logging.logback.ColorConverter
 import org.springframework.boot.logging.logback.WhitespaceThrowableProxyConverter
 
@@ -59,7 +60,7 @@ switch (Environment.current) {
                 maxFileSize = FileSize.valueOf('1MB')
             }
         }
-        root(INFO, [TOMCAT_LOG])
+        root(WARN, [TOMCAT_LOG])
         break
     case Environment.DEVELOPMENT:
         appender(STDOUT, ConsoleAppender) {
@@ -81,7 +82,7 @@ switch (Environment.current) {
                         "%level %logger - %msg%n"
             }
         }
-        root(INFO, [FULL_STACKTRACE, STDOUT])
+        root(WARN, [FULL_STACKTRACE, STDOUT])
         break
     default:
         appender(TOMCAT_LOG, ConsoleAppender) {
@@ -93,6 +94,24 @@ switch (Environment.current) {
                         '%m%n%wex' // Message
             }
         }
-        root(INFO, [TOMCAT_LOG])
+        root(WARN, [TOMCAT_LOG])
         break
+}
+
+if (Environment.isDevelopmentMode()) {
+    [
+            (OFF)  : [],
+            (ERROR): [],
+            (WARN) : [],
+            (INFO) : [
+                    'asset.pipeline',
+                    'au.org.ala'
+            ],
+            (DEBUG): [],
+            (TRACE): []
+    ].each { level, names ->
+        names.each { name ->
+            logger(name, level)
+        }
+    }
 }
