@@ -113,10 +113,8 @@ class SDSService {
                 }
             } catch(FileNotFoundException e){
                 log.error("Unable to update the SDS species file." , e)
-            } catch(IOException e){
-                log.error(e);
-            } catch (Exception e){
-                log.error(e);
+             } catch (Exception e){
+                log.error("Unable to refresh", e)
             }
 
         }
