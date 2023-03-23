@@ -10,7 +10,7 @@ buildscript {
     }
 }
 
-version "1.6.3"
+version "1.6.4-SNAPSHOT"
 group "au.org.ala"
 
 apply plugin:"eclipse"
@@ -51,7 +51,7 @@ dependencies {
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
 
-    compile(group: 'au.org.ala', name: 'sds', version: '1.4.7') {
+    compile(group: 'au.org.ala', name: 'sds', version: '1.4.8-SNAPSHOT') {
         exclude group: 'org.springframework', module: 'spring-jdbc'
         exclude group: 'javax.servlet', module: 'servlet-api'
         exclude group: 'org.apache.bval', module: 'org.apache.bval.bundle'
