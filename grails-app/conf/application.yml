@@ -30,12 +30,18 @@ spring:
     groovy:
         template:
             check-template-location: false
-
-# Spring Actuator Endpoints are Disabled by Default
-endpoints:
-    enabled: false
+  # Spring Actuator Endpoints are Disabled by Default
     jmx:
-        enabled: true
+      unique-names: true
+    management:
+      endpoints:
+        enabled-by-default: false
+    devtools:
+      restart:
+        exclude:
+          - grails-app/views/**
+          - grails-app/i18n/**
+          - grails-app/conf/**
 
 ---
 grails:
@@ -89,9 +95,6 @@ grails:
                 scriptlets: html
                 taglib: none
                 staticparts: none
-endpoints:
-    jmx:
-        unique-names: true
 
 ---
 #Required so that the gbif-ecat library does not bugger up initialisation from its internal application.properties

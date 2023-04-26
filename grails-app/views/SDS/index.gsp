@@ -4,7 +4,7 @@
 <html>
 
 <head>
-    <meta name="layout" content="main"/>
+    <meta name="layout" content="${grailsApplication.config.skin.layout}" />
     <title>Sensitive Data Service</title>
 </head>
 
@@ -75,6 +75,5 @@ individual record pages of the sandbox will indicate whether or not sensitivity 
 %{--</ul>--}%
 
 The species that make up the individual components of the SDS can be view via the <a href="${grailsApplication.config.list.tool.url}/public/speciesLists?isSDS=eq:true">list tool</a>.
-
 </body>
 </html>
