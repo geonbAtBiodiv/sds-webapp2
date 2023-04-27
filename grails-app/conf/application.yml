@@ -103,6 +103,7 @@ app:
 serverName: https://sds.ala.org.au
 security:
   cas:
+    enabled: false
     appServerName: https://sds.ala.org.au
     casServerName: https://auth.ala.org.au
     uriFilterPattern: /refresh
@@ -112,6 +113,15 @@ security:
     logoutUrl: https://auth.ala.org.au/cas/logout
     casServerUrlPrefix: https://auth.ala.org.au/cas
     bypass: false
+  oidc:
+    enabled: true
+    discoveryUri: https://auth-test.ala.org.au/cas/oidc/.well-known
+    scope: openid profile email ala roles
+  jwt:
+    enabled: true
+    discoveryUri: https://auth-test.ala.org.au/cas/oidc/.well-known
+    fallbackToLegacyBehaviour: true
+
 
 sdsFAQ:
     url: https://www.ala.org.au/faq/data-sensitivity/
