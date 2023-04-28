@@ -95,6 +95,7 @@ dependencies {
         exclude group: 'javax.servlet', module: 'servlet-api'
     }
     implementation 'org.grails.plugins:ala-admin-plugin:2.3.0'
+    implementation 'au.org.ala.plugins:openapi:1.1.0'
 }
 
 bootRun {
