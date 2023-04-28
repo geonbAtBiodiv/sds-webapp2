@@ -14,17 +14,16 @@
  */
 package au.org.ala.sds
 
-import au.org.ala.sds.model.SensitivityCategory
-import au.org.ala.sds.model.SensitivityZone
 import au.org.ala.sds.util.Configuration
-import au.org.ala.sds.util.GeoLocationHelper
 import grails.converters.JSON
+import groovy.util.logging.Slf4j
 
 /**
  * The Controller to serve up the SDS webapp content.
  *
  * @author Natasha Quimby (natasha.quimby@csiro.au)
  */
+@Slf4j
 class SDSController {
     def SDSService
     /*
