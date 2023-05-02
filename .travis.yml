@@ -1,11 +1,12 @@
 language: groovy
 jdk:
-- openjdk8
+- openjdk11
 sudo: false
 branches:
   only:
   - master
   - develop
+  - feature/grails5
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
   - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
@@ -18,5 +19,6 @@ after_success:
   - '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && travis_retry ./gradlew publish'
 env:
   global:
+  - JAVA_TOOL_OPTIONS=-Dhttps.protocols=TLSv1.2
   - secure: hoYu5PwbsNn2uY/RhAG1jx+rKqqFihc191dm9ckybeJ1GOSICm5dzZX1a/FRZzfnoqontjyuAJl+CLvAsYpCHB8CAHChGdBlHF8QtaTL8dfIFmq/Wc5ogrgLSDollltbyYlorR/RhDklOuN3dOe8fz06Uk7HpjWW5E2jAzq6PSY=
   - secure: Zlep5iq5qvAk72LiSRlcwI0BYHp0sDdm/iyDp/umVNCVA4/jzPdmf+Mml9gmyiR9sJwVwA5/AeyTcKsO/FXTEnfHYDtCbXOptHj84m8pQ93OlrD2e0tndpzg7oVwRmj9dJeBPu61XcxPRfXuPRy6C1++kR36ZcAIKqApOArT0EI=

@@ -1,13 +1,9 @@
 package au.org.ala.sds
 
-import grails.test.mixin.TestFor
+import grails.testing.web.controllers.ControllerUnitTest
 import spock.lang.Specification
 
-/**
- * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
- */
-@TestFor(SDSController)
-class SDSControllerSpec extends Specification {
+class SDSControllerSpec extends Specification implements ControllerUnitTest<SDSController> {
 
     def setup() {
     }

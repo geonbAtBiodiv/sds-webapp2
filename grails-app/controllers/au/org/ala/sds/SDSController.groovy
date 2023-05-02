@@ -14,17 +14,22 @@
  */
 package au.org.ala.sds
 
-import au.org.ala.sds.model.SensitivityCategory
-import au.org.ala.sds.model.SensitivityZone
+import au.org.ala.plugins.openapi.Path
 import au.org.ala.sds.util.Configuration
-import au.org.ala.sds.util.GeoLocationHelper
 import grails.converters.JSON
+import groovy.util.logging.Slf4j
+import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.Parameter
+import io.swagger.v3.oas.annotations.media.Schema
+
+import static io.swagger.v3.oas.annotations.enums.ParameterIn.PATH
 
 /**
  * The Controller to serve up the SDS webapp content.
  *
  * @author Natasha Quimby (natasha.quimby@csiro.au)
  */
+@Slf4j
 class SDSController {
     def SDSService
     /*
@@ -61,7 +66,37 @@ class SDSController {
     /**
      * WS to perform species lookup
      */
-    def lookup ={
+    @Operation(
+            method = "GET",
+            tags = "Species Lookup",
+            operationId = "SDS Species Lookup",
+            summary = "Lookup Sensitive species data based on species name, date, and location",
+            description = "Lookup Sensitive species data based on species name, date, and location ",
+            parameters = [
+                    @Parameter(name = "scientificName",
+                            in = PATH,
+                            description = "Scientific name for species lookup",
+                            schema = @Schema(implementation = String),
+                            required = true),
+                    @Parameter(name = "latitude",
+                            in = PATH,
+                            description = "Latitude",
+                            schema = @Schema(implementation = String),
+                            required = false),
+                    @Parameter(name = "longitude",
+                            in = PATH,
+                            description = "Longitude",
+                            schema = @Schema(implementation = String),
+                            required = false),
+                    @Parameter(name = "date",
+                            in = PATH,
+                            description = "Date",
+                            schema = @Schema(implementation = String),
+                            required = false),
+            ]
+    )
+    @Path("/ws/{scientificName}/location/{latitude}/{longitude}/date/{date}")
+    def lookup () {
         log.debug(params.toString())
         def report = SDSService.lookupSpecies(params.scientificName, params.latitude, params.longitude, params.date)
         render report as JSON
@@ -71,7 +106,15 @@ class SDSController {
     /**
      * SDS layers
      */
-    def layers = {
+    @Operation(
+            method = "GET",
+            tags = "Layers Lookup",
+            operationId = "Get SDS Layers",
+            summary = "Get a list of layers that are required by the SDS",
+            description = "Get a list of layers that are required by the SDS"
+    )
+    @Path("/ws/layers")
+    def layers () {
         def layers = Configuration.getInstance().getGeospatialLayers()
         render layers as JSON
     }

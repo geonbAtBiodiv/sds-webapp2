@@ -1,13 +1,9 @@
 package au.org.ala.sds
 
-import grails.test.mixin.TestFor
+import grails.testing.services.ServiceUnitTest
 import spock.lang.Specification
 
-/**
- * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
- */
-@TestFor(SDSService)
-class SDSServiceSpec extends Specification {
+class SDSServiceSpec extends Specification implements ServiceUnitTest<SDSService> {
 
     def setup() {
     }
