@@ -106,8 +106,15 @@ class SDSController {
     /**
      * SDS layers
      */
-
-    def layers = {
+    @Operation(
+            method = "GET",
+            tags = "Layers Lookup",
+            operationId = "Get SDS Layers",
+            summary = "Get a list of layers that are required by the SDS",
+            description = "Get a list of layers that are required by the SDS"
+    )
+    @Path("/ws/layers")
+    def layers () {
         def layers = Configuration.getInstance().getGeospatialLayers()
         render layers as JSON
     }
