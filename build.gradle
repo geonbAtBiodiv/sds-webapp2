@@ -13,7 +13,7 @@ plugins {
     id "com.gorylenko.gradle-git-properties" version "2.4.1"
 }
 
-version "1.7.0"
+version "1.7.1-SNAPSHOT"
 group "au.org.ala"
 
 apply plugin:"eclipse"
@@ -88,7 +88,7 @@ dependencies {
         exclude group: 'org.slf4j', module: 'slf4j-log4j12'
     }
     implementation 'dk.glasius:external-config:3.1.1'
-    runtimeOnly "org.grails.plugins:ala-bootstrap3:4.1.0"
+    runtimeOnly "org.grails.plugins:ala-bootstrap3:4.4.0"
     implementation(group: "org.grails.plugins", name: "ala-auth", version:"$alaSecurityLibsVersion") {
         exclude group: 'javax.servlet', module: 'servlet-api'
     }
