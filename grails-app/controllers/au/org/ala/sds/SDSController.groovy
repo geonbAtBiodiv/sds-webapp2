@@ -103,6 +103,56 @@ class SDSController {
 
     }
 
+    // Additional service for openapi. openapi does not support what is in UrlMappings.groovy
+    @Operation(
+            method = "GET",
+            tags = "Species Lookup",
+            operationId = "SDS Species Lookup",
+            summary = "Lookup Sensitive species data based on species name, and location",
+            description = "Lookup Sensitive species data based on species name, and location ",
+            parameters = [
+                    @Parameter(name = "scientificName",
+                            in = PATH,
+                            description = "Scientific name for species lookup",
+                            schema = @Schema(implementation = String),
+                            required = true),
+                    @Parameter(name = "latitude",
+                            in = PATH,
+                            description = "Latitude",
+                            schema = @Schema(implementation = String),
+                            required = false),
+                    @Parameter(name = "longitude",
+                            in = PATH,
+                            description = "Longitude",
+                            schema = @Schema(implementation = String),
+                            required = false)
+            ]
+    )
+    @Path("/ws/{scientificName}/location/{latitude}/{longitude}")
+    def lookup1 () {
+        lookup()
+    }
+
+    // Additional service for openapi. openapi does not support what is in UrlMappings.groovy
+    @Operation(
+            method = "GET",
+            tags = "Species Lookup",
+            operationId = "SDS Species Lookup",
+            summary = "Lookup Sensitive species data based on species name",
+            description = "Lookup Sensitive species data based on species name",
+            parameters = [
+                    @Parameter(name = "scientificName",
+                            in = PATH,
+                            description = "Scientific name for species lookup",
+                            schema = @Schema(implementation = String),
+                            required = true)
+            ]
+    )
+    @Path("/ws/{scientificName}")
+    def lookup2 () {
+        lookup()
+    }
+
     /**
      * SDS layers
      */
