@@ -14,11 +14,14 @@
  */
 package au.org.ala.sds
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+
 /**
  * The POGO to represents a report on a species and its possible sensitivities
  *
  * @author Natasha Quimby (natasha.quimby@csiro.au)
  */
+@JsonIgnoreProperties('metaClass')
 class SpeciesReport {
     String scientificName
     String commonName

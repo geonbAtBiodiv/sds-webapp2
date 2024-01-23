@@ -20,7 +20,11 @@ import grails.converters.JSON
 import groovy.util.logging.Slf4j
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
+import io.swagger.v3.oas.annotations.headers.Header
+import io.swagger.v3.oas.annotations.media.ArraySchema
+import io.swagger.v3.oas.annotations.media.Content
 import io.swagger.v3.oas.annotations.media.Schema
+import io.swagger.v3.oas.annotations.responses.ApiResponse
 
 import static io.swagger.v3.oas.annotations.enums.ParameterIn.PATH
 
@@ -93,6 +97,23 @@ class SDSController {
                             description = "Date",
                             schema = @Schema(implementation = String),
                             required = false),
+            ],
+            responses = [
+                    @ApiResponse(
+                            description = "Success",
+                            responseCode = "200",
+                            content = [
+                                    @Content(
+                                            mediaType = "application/json",
+                                            schema = @Schema(implementation = SpeciesReport)
+                                    )
+                            ],
+                            headers = [
+                                    @Header(name = 'Access-Control-Allow-Headers', description = "CORS header", schema = @Schema(type = "string")),
+                                    @Header(name = 'Access-Control-Allow-Methods', description = "CORS header", schema = @Schema(type = "string")),
+                                    @Header(name = 'Access-Control-Allow-Origin', description = "CORS header", schema = @Schema(type = "string"))
+                            ]
+                    )
             ]
     )
     @Path("/ws/{scientificName}/location/{latitude}/{longitude}/date/{date}")
@@ -126,6 +147,23 @@ class SDSController {
                             description = "Longitude",
                             schema = @Schema(implementation = String),
                             required = false)
+            ],
+            responses = [
+                    @ApiResponse(
+                            description = "Success",
+                            responseCode = "200",
+                            content = [
+                                    @Content(
+                                            mediaType = "application/json",
+                                            schema = @Schema(implementation = SpeciesReport)
+                                    )
+                            ],
+                            headers = [
+                                    @Header(name = 'Access-Control-Allow-Headers', description = "CORS header", schema = @Schema(type = "string")),
+                                    @Header(name = 'Access-Control-Allow-Methods', description = "CORS header", schema = @Schema(type = "string")),
+                                    @Header(name = 'Access-Control-Allow-Origin', description = "CORS header", schema = @Schema(type = "string"))
+                            ]
+                    )
             ]
     )
     @Path("/ws/{scientificName}/location/{latitude}/{longitude}")
@@ -146,6 +184,23 @@ class SDSController {
                             description = "Scientific name for species lookup",
                             schema = @Schema(implementation = String),
                             required = true)
+            ],
+            responses = [
+                    @ApiResponse(
+                            description = "Success",
+                            responseCode = "200",
+                            content = [
+                                    @Content(
+                                            mediaType = "application/json",
+                                            schema = @Schema(implementation = SpeciesReport)
+                                    )
+                            ],
+                            headers = [
+                                    @Header(name = 'Access-Control-Allow-Headers', description = "CORS header", schema = @Schema(type = "string")),
+                                    @Header(name = 'Access-Control-Allow-Methods', description = "CORS header", schema = @Schema(type = "string")),
+                                    @Header(name = 'Access-Control-Allow-Origin', description = "CORS header", schema = @Schema(type = "string"))
+                            ]
+                    )
             ]
     )
     @Path("/ws/{scientificName}")
@@ -161,7 +216,24 @@ class SDSController {
             tags = "Layers Lookup",
             operationId = "Get SDS Layers",
             summary = "Get a list of layers that are required by the SDS",
-            description = "Get a list of layers that are required by the SDS"
+            description = "Get a list of layers that are required by the SDS",
+            responses = [
+                    @ApiResponse(
+                            description = "Success",
+                            responseCode = "200",
+                            content = [
+                                    @Content(
+                                            mediaType = "application/json",
+                                            array = @ArraySchema(schema = @Schema(implementation = String))
+                                    )
+                            ],
+                            headers = [
+                                    @Header(name = 'Access-Control-Allow-Headers', description = "CORS header", schema = @Schema(type = "string")),
+                                    @Header(name = 'Access-Control-Allow-Methods', description = "CORS header", schema = @Schema(type = "string")),
+                                    @Header(name = 'Access-Control-Allow-Origin', description = "CORS header", schema = @Schema(type = "string"))
+                            ]
+                    )
+            ]
     )
     @Path("/ws/layers")
     def layers () {
