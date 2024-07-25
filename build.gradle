@@ -73,7 +73,6 @@ dependencies {
     runtimeOnly "com.bertramlabs.plugins:asset-pipeline-grails:3.4.6"
     runtimeOnly "org.hibernate:hibernate-validator:5.4.2.Final"
 
-
     testImplementation "org.grails:grails-gorm-testing-support"
     testImplementation "org.grails:grails-web-testing-support"
     //runtimeOnly "com.h2database:h2"
@@ -81,7 +80,7 @@ dependencies {
     testImplementation "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testImplementation "net.sourceforge.htmlunit:htmlunit:2.18"
 
-    implementation(group: 'au.org.ala', name: 'sds', version: '1.4.8') {
+    implementation(group: 'au.org.ala', name: 'sds', version: '1.4.9') {
         exclude group: 'org.springframework', module: 'spring-jdbc'
         exclude group: 'javax.servlet', module: 'servlet-api'
         exclude group: 'org.apache.bval', module: 'org.apache.bval.bundle'
