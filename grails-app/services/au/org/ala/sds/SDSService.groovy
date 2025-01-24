@@ -103,7 +103,7 @@ class SDSService {
                     //rename the old if it exists
                     def currentFile = new File(sensitiveFileName)
                     if(currentFile.exists()) {
-                        FileUtils.copyFile(currentFile, new File(sensitiveFileName+"."+ DateFormatUtils.format(lastUpdated, "yyyy-MM-dd_HHmm")))
+                        FileUtils.copyFile(currentFile, new File(sensitiveFileName+"."+ DateFormatUtils.format((Date)lastUpdated, "yyyy-MM-dd_HHmm")))
                     }
                     FileUtils.copyFile(new File(sensitiveFileName + ".tmp"), new File(sensitiveFileName ))
                     lastUpdated = new Date()
